@@ -1,18 +1,22 @@
+<script setup lang="ts">
+import DefaultLayout from './layouts/DefaultLayout.vue'
+import { useRoute } from 'vue-router'
+
+const route = useRoute()
+</script>
+
 <template>
-  <TheWelcome />
-  <RouterView class="mt-8" />
+  <component :is="route.meta.layout ?? DefaultLayout" id="real-app">
+    <RouterView />
+  </component>
 </template>
 
 <style>
 #app {
-  width: 80%;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  row-gap: 1rem;
+  position: relative;
+  height: 100%;
+}
+#real-app {
+  min-height: 100%;
 }
 </style>
